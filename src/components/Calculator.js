@@ -1,19 +1,6 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import calculate from '../logic/calculate';
-
-function Button({ onClick, label }) {
-  return (
-    <button type="button" onClick={onClick}>
-      {label}
-    </button>
-  );
-}
-
-Button.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  label: PropTypes.string.isRequired,
-};
+import Button from './Button';
 
 function Calculator() {
   const [obj, setObj] = useState({
