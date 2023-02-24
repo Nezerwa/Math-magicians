@@ -1,58 +1,71 @@
-/* eslint-disable */
-import React, { useState } from "react";
-import calculate from "../logic/calculate";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import calculate from '../logic/calculate';
 
-const Calculator = () => {
+function Button({ onClick, label }) {
+  return (
+    <button type="button" onClick={onClick}>
+      {label}
+    </button>
+  );
+}
+
+Button.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
+};
+
+function Calculator() {
   const [obj, setObj] = useState({
     total: null,
     next: null,
     operation: null,
   });
 
-  const handleClick = (buttonName) => {
+  function handleClick(buttonName) {
     setObj(calculate(obj, buttonName));
-  };
+  }
 
   return (
-    <div className="calculator-contaier">
+    <div className="calculator-main-cont">
       <div className="calculator-output">{obj.next || obj.total || 0}</div>
       <div className="calculator-wrapper">
-        <div className="calculator-count">
+        <div className="calculator-numbers-cont">
           <div className="calculator-numbers">
-            <button onClick={() => handleClick("AC")}>AC</button>
-            <button onClick={() => handleClick("+/-")}>+/-</button>
-            <button onClick={() => handleClick("%")}>%</button>
+            <Button label="AC" onClick={() => handleClick('AC')} />
+            <Button label="+/-" onClick={() => handleClick('+/-')} />
+            <Button label="%" onClick={() => handleClick('%')} />
           </div>
           <div className="calculator-numbers">
-            <button onClick={() => handleClick("7")}>7</button>
-            <button onClick={() => handleClick("8")}>8</button>
-            <button onClick={() => handleClick("9")}>9</button>
+            <Button label="7" onClick={() => handleClick('7')} />
+            <Button label="8" onClick={() => handleClick('8')} />
+            <Button label="9" onClick={() => handleClick('9')} />
           </div>
           <div className="calculator-numbers">
-            <button onClick={() => handleClick("4")}>4</button>
-            <button onClick={() => handleClick("5")}>5</button>
-            <button onClick={() => handleClick("6")}>6</button>
+            <Button label="4" onClick={() => handleClick('4')} />
+            <Button label="5" onClick={() => handleClick('5')} />
+            <Button label="6" onClick={() => handleClick('6')} />
           </div>
           <div className="calculator-numbers">
-            <button onClick={() => handleClick("1")}>1</button>
-            <button onClick={() => handleClick("2")}>2</button>
-            <button onClick={() => handleClick("3")}>3</button>
+            <Button label="1" onClick={() => handleClick('1')} />
+            <Button label="2" onClick={() => handleClick('2')} />
+            <Button label="3" onClick={() => handleClick('3')} />
           </div>
           <div className="calculator-numbers">
-            <button onClick={() => handleClick("0")}>0</button>
-            <button onClick={() => handleClick(".")}>.</button>
+            <Button label="0" onClick={() => handleClick('0')} />
+            <Button label="." onClick={() => handleClick('.')} />
           </div>
         </div>
         <div className="calculator-symbol-cont">
-          <button onClick={() => handleClick("÷")}>÷</button>
-          <button onClick={() => handleClick("x")}>×</button>
-          <button onClick={() => handleClick("-")}>-</button>
-          <button onClick={() => handleClick("+")}>+</button>
-          <button onClick={() => handleClick("=")}>=</button>
+          <Button label="÷" onClick={() => handleClick('÷')} />
+          <Button label="×" onClick={() => handleClick('x')} />
+          <Button label="-" onClick={() => handleClick('-')} />
+          <Button label="+" onClick={() => handleClick('+')} />
+          <Button label="=" onClick={() => handleClick('=')} />
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Calculator;
